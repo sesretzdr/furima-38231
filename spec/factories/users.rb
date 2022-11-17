@@ -12,3 +12,4 @@ FactoryBot.define do
     birthday              { Date.new(1990, 01, 01) }
    
   end
+end
