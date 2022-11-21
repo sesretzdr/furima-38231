@@ -86,7 +86,6 @@ RSpec.describe User, type: :model do
    
   end
 end
-
 describe 'ユーザー新規登録' do
   context '正常に登録できる時' do
     it 'パスワードが半角英数混合であれば登録できる' do
