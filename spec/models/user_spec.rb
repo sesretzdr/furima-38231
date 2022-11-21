@@ -58,13 +58,13 @@ RSpec.describe User, type: :model do
     end
 
     it 'last_nameが全角入力でなければ登録できないこと' do
-      @user = build(:user, last_name: "ｱｲｳｴｵ") 
+      @user .last_name = "ｱｲｳｴｵ" 
       @user.valid?
       expect(user.errors[:last_name]).to include("は不正な値です")
     end
 
     it 'first_nameが全角入力でなければ登録できないこと' do
-      @user = build(:user, first_name: "ｱｲｳｴｵ") 
+      @user .first_name = "ｱｲｳｴｵ" 
       @user.valid?
       expect(user.errors[:first_name]).to include("は不正な値です")
     end
@@ -72,13 +72,13 @@ RSpec.describe User, type: :model do
    
 
     it 'last_name_kanaが全角カタカナでなければ登録できないこと' do
-      @user = build(:user, last_name_kana: "あいうえお") 
+      @user .last_name_kana = "あいうえお" 
       @user.valid?
       expect(user.errors[:last_name_kana]).to include("は不正な値です")
     end
 
     it 'first_name_kanaが全角カタカナでなければ登録できないこと' do
-      @user = build(:user, first_name_kana: "あいうえお")
+      @user.first_name_kana = "あいうえお"
       @user.valid?
       expect(user.errors[:first_name_kana]).to include("は不正な値です")
     end
