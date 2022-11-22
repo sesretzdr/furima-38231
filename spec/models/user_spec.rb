@@ -1,15 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe '#create' do
     before do
       @user = FactoryBot.build(:user)
     end
 
-    
-    it '全て正しく入力されれば登録できること' do
+    describe 'ユーザー新規登録' do
+      context '新規登録できるとき' do
+       it '全て正しく入力されれば登録できること' do
+        expect(@user).to be_valid
+    end
+       it 'パスワードが半角英数混合であれば登録できる' do
       expect(@user).to be_valid
     end
+
+  end
+  
+  context '新規登録できないとき' do
 
     it 'nicknameがないと登録できない' do
       @user.nickname = nil
@@ -83,11 +90,6 @@ RSpec.describe User, type: :model do
       expect(user.errors[:first_name_kana]).to include("は不正な値です")
     end
 
-   
-  end
-end
-describe 'ユーザー新規登録' do
-  context '正常に登録できる時' do
     it 'パスワードが半角英数混合であれば登録できる' do
       expect(@user).to be_valid
     end
@@ -111,10 +113,6 @@ describe 'ユーザー新規登録' do
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
 
-
-  end
-
-  context '登録ができない時' do
     it 'パスワードが英語のみでは登録できない' do
       @user.password = 'abcdef'
       @user.valid?
