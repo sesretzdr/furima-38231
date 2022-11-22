@@ -5,11 +5,12 @@ RSpec.describe User, type: :model do
       @user = FactoryBot.build(:user)
     end
 
-   
+   context '新規登録できるとき' do
     it '全て正しく入力されれば登録できること' do
       expect(@user).to be_valid
     end
-
+  end
+    context '新規登録できないとき' do
     it 'nicknameがないと登録できない' do
       @user.nickname = nil
       @user.valid?
@@ -127,6 +128,6 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include('Last name kana Full-width katakana characters')
     end
 
-   
+   end
   end
 end
