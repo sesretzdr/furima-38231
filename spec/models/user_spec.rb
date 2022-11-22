@@ -128,6 +128,12 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include('Last name kana Full-width katakana characters')
     end
 
+    it '生年月日がないと登録できない' do
+      @user.birth_date = nil
+      @user.valid?
+      expect(@user.errors.full_messages).to include("birth date can't be blank")
+    end
+
    end
   end
 end
