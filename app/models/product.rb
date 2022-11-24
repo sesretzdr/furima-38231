@@ -1,4 +1,15 @@
-class Item < ApplicationRecord
+class Product < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :category
+  belongs_to_active_hash :day
+  belongs_to_active_hash :derively_fee
+  belongs_to_active_hash :prefecture
+  belongs_to_active_hash :status
+  has_one_attached :image
+
+  belongs_to :user
+  
+
   with_options presence: true do
     validates :image
     validates :name
@@ -20,8 +31,4 @@ class Item < ApplicationRecord
   end
 
   validates :price, format: { with: /\A[0-9]+\z/, message: 'Price Half-width number' }, inclusion: { in: (300..9_999_999), message: 'Out of setting range' }
-  has_one_attached :image
 end
-
-
-

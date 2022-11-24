@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_23_132418) do
+ActiveRecord::Schema.define(version: 2022_11_24_154841) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -38,19 +38,19 @@ ActiveRecord::Schema.define(version: 2022_11_23_132418) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.text "description", null: false
+    t.text "explanation", null: false
     t.integer "category_id", null: false
-    t.integer "derively_day_id", null: false
+    t.integer "derively_fee_id", null: false
     t.integer "status_id", null: false
     t.integer "prefecture_id", null: false
-    t.integer "Shipping_charge_id", null: false
+    t.integer "day_id", null: false
     t.integer "price", null: false
     t.bigint "user_id", null: false
-    t.index ["user_id"], name: "index_items_on_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -72,5 +72,5 @@ ActiveRecord::Schema.define(version: 2022_11_23_132418) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "items", "users"
+  add_foreign_key "products", "users"
 end
