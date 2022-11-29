@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
     #before_action :set_product, only: [ :edit, :update,]
   
     def index
-      #@products = Product.all
+      @products = Product.all
     end
   
     def new
