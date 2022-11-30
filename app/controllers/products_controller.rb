@@ -1,9 +1,9 @@
 class ProductsController < ApplicationController
     before_action :require_login, only: :new, alert: 'You need to sign in or sign up before continuing.'
-    #before_action :set_product, only: [ :edit, :update,]
+    #before_action :set_product, only: [ :edit, :update, :destroy, :show,]
   
     def index
-      @products = Product.all
+      @products = Product.all.order('created_at DESC')
     end
   
     def new
