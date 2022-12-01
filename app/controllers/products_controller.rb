@@ -1,7 +1,12 @@
 class ProductsController < ApplicationController
     before_action :require_login, only: :new, alert: 'You need to sign in or sign up before continuing.'
+<<<<<<< Updated upstream
     before_action :set_product, only: [ :show]
     before_action :authenticate_user!, except: [ :index, :show]
+=======
+    before_action :set_product, only: [ :edit, :update,  :show,]
+    before_action :authenticate_user!, except: [ :index]
+>>>>>>> Stashed changes
   
     def index
       @products = Product.all.order('created_at DESC')
@@ -26,13 +31,13 @@ class ProductsController < ApplicationController
     def edit
     end
   
-    #def update
-     # if @product.update(product_params)
-        #redirect_to product_path(@product.id)
-     # else
-       # render :edit
-     # end
-    #end
+    def update
+      if @product.update(product_params)
+        edirect_to product_path(@product.id)
+      else
+        render :edit
+      end
+    end
   
     #def destroy
       #if# @product.destroy
