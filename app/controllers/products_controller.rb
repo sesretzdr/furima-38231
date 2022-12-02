@@ -1,5 +1,4 @@
 class ProductsController < ApplicationController
-    before_action :require_login, only: :new,  alert:  'You need to sign in or sign up before continuing.'
     before_action :set_product, only: [ :show, :edit, :update,]
     before_action :authenticate_user!, except: [ :index, :show]
 
@@ -25,7 +24,6 @@ class ProductsController < ApplicationController
     end
   
     def edit
-      @product = Product.find(params[:id])
       redirect_to root_path unless current_user.id == @product.user_id
     end
   
