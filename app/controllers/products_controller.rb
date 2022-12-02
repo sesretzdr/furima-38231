@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
-    before_action :require_login, only: :new, alert: 'You need to sign in or sign up before continuing.'
-    before_action :set_product, only: [ :show]
+    before_action :set_product, only: [ :show, :edit, :update,]
     before_action :authenticate_user!, except: [ :index, :show]
+
   
     def index
       @products = Product.all.order('created_at DESC')
@@ -24,15 +24,16 @@ class ProductsController < ApplicationController
     end
   
     def edit
+      redirect_to root_path unless current_user.id == @product.user_id
     end
   
-    #def update
-     # if @product.update(product_params)
-        #redirect_to product_path(@product.id)
-     # else
-       # render :edit
-     # end
-    #end
+    def update
+      if @product.update(product_params)
+        redirect_to product_path(@product.id)
+      else
+        render :edit
+      end
+    end
   
     #def destroy
       #if# @product.destroy
