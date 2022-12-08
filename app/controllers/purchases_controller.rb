@@ -1,9 +1,9 @@
 class PurchasesController < ApplicationController
-  before_action :set_product, only: [:index, :create, :pay_item]
+  before_action :set_product, only: [:index, :create, ]
   before_action :authenticate_user!
 
   def index
-    if @product[:user_id] == current_user.id || @product.purchase.present?
+    if @product :user_id == current_user.id || @product.purchase.present?
       redirect_to root_path
     else
       @purchase = PurchaseAddress.new
