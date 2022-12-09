@@ -4,6 +4,8 @@ RSpec.describe PurchaseAddress, type: :model do
     before do
       @user = FactoryBot.create(:user )
       @product = FactoryBot.build(:product)
+      @product.image = fixture_file_upload('public/images/test_image.png')
+      @product.save
       @purchase = FactoryBot.build(:purchase_address, product_id: @product.id, user_id: @user.id)
     end
     context '購入できる時' do
