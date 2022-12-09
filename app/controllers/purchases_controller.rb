@@ -4,7 +4,7 @@ class PurchasesController < ApplicationController
 
   def index
    
-    if @product[:user_id] == current_user.id || @product.purchase.present?
+    if @product[:user_id] == current_user.id 
       redirect_to root_path
     else
       @purchase = PurchaseAddress.new
