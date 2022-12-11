@@ -64,3 +64,6 @@ gem 'faker'
 gem 'payjp'
 gem 'pry-rails'
 gem 'gimei'
+group :production do
+  gem 'pg'
+  end
